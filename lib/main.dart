@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:intruder_detector/entryScreen.dart';
+import 'package:intruder_detector/homePage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
-void main() {
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Handling a background message ${message.messageId}');
+}
+
+Future<void> main() async {
   runApp(const MyApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,9 +26,13 @@ class MyApp extends StatelessWidget {
       title: 'Intruder Detector',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Colors.deepPurple.shade50,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.deepPurple.shade400,
+        ),
         useMaterial3: true,
       ),
-      home: const EntryScreen(),
+      home: const HomePage(),
     );
   }
 }

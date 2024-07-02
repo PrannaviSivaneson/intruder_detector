@@ -13,18 +13,14 @@ class _EntryScreenState extends State<EntryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple.shade50,
-      appBar: AppBar(
-        title: Text(''),
-        centerTitle: true,
-        backgroundColor: Colors.deepPurple.shade400,
-      ),
+      appBar: AppBar(),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0),
+        padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40.0,
             ),
             Expanded(
@@ -40,7 +36,7 @@ class _EntryScreenState extends State<EntryScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Center(
                     child: TextButton(
                       onPressed: () {
@@ -50,11 +46,10 @@ class _EntryScreenState extends State<EntryScreen> {
                             MaterialPageRoute(
                                 builder: (context) => const ShowIntruder()));
                       },
-                      child: Text('Let\'s have a look at whom'),
                       style: TextButton.styleFrom(
                           backgroundColor: Colors.deepPurple.shade300,
                           primary: Colors.white,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                             horizontal: 30.0,
                             vertical: 15.0,
                           ),
@@ -62,12 +57,13 @@ class _EntryScreenState extends State<EntryScreen> {
                               borderRadius: BorderRadius.circular(
                             30.0,
                           ))),
+                      child: const Text('Let\'s have a look at whom'),
                     ),
                   ),
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               flex: 2,
               child: Image(
                 image: AssetImage('assets/Intruder Image.png'),
