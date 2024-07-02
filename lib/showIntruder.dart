@@ -21,14 +21,14 @@ class _ShowIntruderState extends State<ShowIntruder> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 100),
-            Image(
+            const SizedBox(height: 100),
+            const Image(
               image: AssetImage('assets/Intruder Detected.jpeg'),
               width: 250,
               height: 250,
               fit: BoxFit.cover,
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Text(
               'This is the Intruder!',
               style: TextStyle(
@@ -45,7 +45,7 @@ class _ShowIntruderState extends State<ShowIntruder> {
                 fontWeight: FontWeight.normal,
               ),
             ),
-            SizedBox(height: 200),
+            const SizedBox(height: 200),
             TextButton(
               onPressed: () {
                 print('You clicked me');
