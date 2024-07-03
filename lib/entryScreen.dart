@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intruder_detector/showIntruder.dart';
 
 class EntryScreen extends StatefulWidget {
-  const EntryScreen({Key? key}) : super(key: key);
+  const EntryScreen({super.key});
 
   @override
   State<EntryScreen> createState() => _EntryScreenState();
@@ -47,8 +47,8 @@ class _EntryScreenState extends State<EntryScreen> {
                                 builder: (context) => const ShowIntruder()));
                       },
                       style: TextButton.styleFrom(
+                          foregroundColor: Colors.white,
                           backgroundColor: Colors.deepPurple.shade300,
-                          primary: Colors.white,
                           padding: const EdgeInsets.symmetric(
                             horizontal: 30.0,
                             vertical: 15.0,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ShowIntruder extends StatefulWidget {
-  const ShowIntruder({Key? key}) : super(key: key);
+  const ShowIntruder({super.key});
 
   @override
   State<ShowIntruder> createState() => _ShowIntruderState();
@@ -53,8 +53,8 @@ class _ShowIntruderState extends State<ShowIntruder> {
               },
               child: const Text('Go Back'),
               style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
                   backgroundColor: Colors.deepPurple.shade300,
-                  primary: Colors.white,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 30.0,
                     vertical: 15.0,

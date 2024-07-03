@@ -15,7 +15,7 @@ class IntruderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
-      margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+      margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
