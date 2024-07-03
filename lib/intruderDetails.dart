@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 
-class ShowIntruder extends StatefulWidget {
-  const ShowIntruder({super.key});
+class IntruderDetails extends StatelessWidget {
+  final String date;
+  final String assetPath;
+  final String time;
 
-  @override
-  State<ShowIntruder> createState() => _ShowIntruderState();
-}
+  const IntruderDetails(
+      {super.key,
+      required this.date,
+      required this.assetPath,
+      required this.time});
 
-class _ShowIntruderState extends State<ShowIntruder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple.shade50,
       appBar: AppBar(
-        leading: const SizedBox(),
+        centerTitle: true,
+        title: const Text(
+          'Intruder Details',
+          style: TextStyle(
+              color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Center(
         child: Column(
@@ -21,15 +28,26 @@ class _ShowIntruderState extends State<ShowIntruder> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 100),
-            const Image(
-              image: AssetImage('assets/Intruder Detected.jpeg'),
-              width: 250,
-              height: 250,
-              fit: BoxFit.cover,
+            Column(
+              children: [
+                Image.asset(
+                  assetPath,
+                  width: 150,
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(height: 10),
+                Image.asset(
+                  assetPath,
+                  width: 150,
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
+              ],
             ),
             const SizedBox(height: 30),
             Text(
-              'This is the Intruder!',
+              date,
               style: TextStyle(
                 color: Colors.deepPurple.shade900,
                 fontSize: 25.0,
@@ -37,7 +55,7 @@ class _ShowIntruderState extends State<ShowIntruder> {
               ),
             ),
             Text(
-              'Detected at 7.05 am today.',
+              time,
               style: TextStyle(
                 color: Colors.deepPurple.shade900,
                 fontSize: 17.0,
