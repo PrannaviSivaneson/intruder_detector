@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
+
   print('Handling a background message ${message.messageId}');
 }
 
@@ -38,8 +39,18 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const HomePage(),
-      routes: {
-        '/notification': (context) => const EntryScreen(),
+      onGenerateRoute: (settings) {
+        if (settings.name == '/notification') {
+          print(settings.arguments);
+          final args = settings.arguments as Map;
+          return MaterialPageRoute(
+            builder: (context) {
+              return EntryScreen(userID: args['userID'], docID: args['docID'],);
+            },
+          );
+        }
+        assert(false, 'Need to implement ${settings.name}');
+        return null;
       },
     );
   }

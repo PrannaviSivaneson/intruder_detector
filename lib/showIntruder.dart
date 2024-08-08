@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
 
 class ShowIntruder extends StatefulWidget {
-  const ShowIntruder({super.key});
+  const ShowIntruder({super.key, required this.userID, required this.docID});
+  final String userID;
+  final String docID;
+
 
   @override
   State<ShowIntruder> createState() => _ShowIntruderState();
 }
 
 class _ShowIntruderState extends State<ShowIntruder> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  getIntruder() {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

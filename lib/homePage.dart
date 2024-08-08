@@ -41,12 +41,18 @@ class _HomePageState extends State<HomePage> {
         //     );
         //   },
         // );
-        Navigator.pushNamed(context, '/notification');
+        Navigator.pushNamed(context, '/notification',arguments: {
+          "docID": message.data['doc_id'],
+          "userID": message.data['user_id'],
+        });
       }
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      Navigator.pushNamed(context, '/notification');
+      Navigator.pushNamed(context, '/notification',arguments: {
+      "docID": message.data['doc_id'],
+      "userID": message.data['user_id'],
+      });
     });
   }
 

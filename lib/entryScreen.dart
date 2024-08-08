@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intruder_detector/showIntruder.dart';
 
 class EntryScreen extends StatefulWidget {
-  const EntryScreen({super.key});
+  const EntryScreen({super.key, required this.userID, required this.docID});
+  final String userID;
+  final String docID;
 
   @override
   State<EntryScreen> createState() => _EntryScreenState();
@@ -44,7 +47,7 @@ class _EntryScreenState extends State<EntryScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ShowIntruder()));
+                                builder: (context) =>  ShowIntruder(userID: widget.userID, docID: widget.docID,)));
                       },
                       style: TextButton.styleFrom(
                           foregroundColor: Colors.white,
