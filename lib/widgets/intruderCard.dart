@@ -55,16 +55,16 @@ class IntruderCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Image.asset(
+                  Image.network(
                     assetPath,
                     width: 50,
                     height: 50,
                   ),
-                  Image.asset(
-                    assetPath,
-                    width: 50,
-                    height: 50,
-                  ),
+                  // Image.asset(
+                  //   assetPath,
+                  //   width: 50,
+                  //   height: 50,
+                  // ),
                 ],
               ),
             ],

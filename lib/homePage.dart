@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intruder_detector/widgets/intruderCard.dart';
@@ -56,6 +57,26 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<List<Map<String, dynamic>>> fetchIntruderList() async {
+    CollectionReference collectionRef = FirebaseFirestore.instance.collection("Users").doc('HodSqk9AoxhgG3SfgWVL').collection("intruders");
+
+    try {
+      QuerySnapshot querySnapshot = await collectionRef.get();
+      List<Map<String, dynamic>> intruderList = [];
+
+      for (var doc in querySnapshot.docs) {
+        intruderList.add(doc.data() as Map<String, dynamic>);
+      }
+
+      return intruderList;
+    } catch (e) {
+      print("Error getting documents: $e");
+      return [];
+    }
+  }
+
   initialiseFBMessaging() async {
     final notificationSettings =
         await FirebaseMessaging.instance.requestPermission(provisional: true);
@@ -93,17 +114,32 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView.builder(
-          padding: const EdgeInsets.all(10.0),
-          itemCount: intruderList.length,
-          itemBuilder: (context, index) {
-            final item = intruderList[index];
-            return IntruderCard(
-              date: item['date']!,
-              assetPath: item['assets']!,
-              time: item['time']!,
+      body: FutureBuilder<List<Map<String, dynamic>>>(
+        future: fetchIntruderList(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(child: Text('No intruder data found.'));
+          } else {
+            final intruderList = snapshot.data!;
+            return ListView.builder(
+              padding: const EdgeInsets.all(10.0),
+              itemCount: intruderList.length,
+              itemBuilder: (context, index) {
+                final item = intruderList[index];
+                return IntruderCard(
+                  date: item['date_time'].toString().split(" ")[0] ?? '',
+                  assetPath: item['image_url'] ?? '',
+                  time: item['date_time'].toString().split(" ")[1].split(":").sublist(0,2).join(":") ?? '',
+                );
+              },
             );
-          }),
+          }
+        },
+      ),
     );
   }
 }

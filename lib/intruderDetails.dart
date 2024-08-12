@@ -30,19 +30,19 @@ class IntruderDetails extends StatelessWidget {
             const SizedBox(height: 100),
             Column(
               children: [
-                Image.asset(
+                Image.network(
                   assetPath,
                   width: 150,
                   height: 150,
                   fit: BoxFit.cover,
                 ),
                 const SizedBox(height: 10),
-                Image.asset(
-                  assetPath,
-                  width: 150,
-                  height: 150,
-                  fit: BoxFit.cover,
-                ),
+                // Image.asset(
+                //   assetPath,
+                //   width: 150,
+                //   height: 150,
+                //   fit: BoxFit.cover,
+                // ),
               ],
             ),
             const SizedBox(height: 30),
